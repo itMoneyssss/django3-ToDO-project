@@ -1,0 +1,135 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Base -->
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="{% static "todo_app/ToDo_logo.png" %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Project created with django and python</title>
+
+    <!---- ========= CSS ========= -->
+    <link rel="stylesheet" href="{% static 'todo_app/css/style.css' %}">
+
+    <!---- ========= BOXCICONS ========= -->
+ <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+        <!-- Side Bar -->
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="{% static 'todo_app/ToDo_logo.png' %}" alt="logo">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">ToDo</span>
+                    <span class="profession">{{ user.username }}</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="{% url 'currentToDos' %}">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'createToDos' %}">
+                            <i class='bx bx-edit icon'></i>
+                            <span class="text nav-text">Create</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'instruction' %}">
+                            <i class='bx bx-clipboard icon'></i>
+                            <span class="text nav-text">Instruction</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'completedToDos' %}">
+                            <i class='bx bx-check-square icon'></i>
+                            <span class="text nav-text">Completed</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'link' %}">
+                            <i class='bx bx-link icon'></i>
+                            <span class="text nav-text">link to authors</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{% url 'donate' %}">
+                            <i class='bx bx-dollar-circle bx-fade-up icon' ></i>
+                            <span class="text nav-text">Support</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="{% url 'logoutuser' %}">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
+        </div>
+    </nav>
+        <!-- CONTETNT -->
+    <section class="home">
+        <div class="text">
+            {% block content %} {% endblock %}
+        </div>
+    </section>
+        <!-- END CONTENT -->
+    <script>
+        const body = document.querySelector('body'),
+              sidebar = body.querySelector('nav'),
+              toggle = body.querySelector(".toggle"),
+              modeSwitch = body.querySelector(".toggle-switch"),
+              modeText = body.querySelector(".mode-text");
+        toggle.addEventListener("click" , () =>{
+            sidebar.classList.toggle("close");
+        })
+
+        modeSwitch.addEventListener("click", () => {
+          body.classList.toggle("dark");
+
+          if (body.classList.contains("dark")) {
+            modeText.innerText = "Light mode";
+            localStorage.setItem("theme", "dark");
+          } else {
+            modeText.innerText = "Dark mode";
+            localStorage.setItem("theme", "light");
+          }
+        });
+        const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+              body.classList.add("dark");
+              modeText.innerText = "Light mode";
+            } else {
+              modeText.innerText = "Dark mode";
+            }
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'todo_app/base.html' %}
+
+            <!-- ====== Content ====== -->
+<!-- сделать таблицу -->
+{% block content %}
+    <style>
+        .list, .danger {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: lighter;
+            text-align: center;
+            transition: background-color 0.3s ease;
+          }
+
+          .list {
+            background-color: #22ff00;
+          }
+
+          .list:hover {
+            background-color: #025e02;
+          }
+
+          .danger {
+            background-color: #d90e0e;
+          }
+
+          .danger:hover {
+            background-color: rgba(9, 65, 2, 0.99);
+          }
+
+          .list h1 {
+            font-size: 28px;
+            margin: 0;
+          }
+    </style>
+ <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <h1 class="title">Completed Todos</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <div class="list-group">
+            <table>
+                <tr>
+                    <td>
+                        {% for todo in todos %}
+                            <a href="{% url 'viewToDos' todo.id %}" class="{% if todo.important %}danger{% else %}list{% endif %}"><b><h1>{{ todo.title }}</h1></b> - Completed {{ todo.datecompleted|date:'M j Y H:i' }}</a>
+                            <br>
+                            <br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

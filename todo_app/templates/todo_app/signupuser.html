@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp in ToDo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" href="{% static "todo_app/ToDo_logo.png" %}">
+
+    <!--Stylesheet-->
+    <style media="screen">
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #480095;
+  z-index: -1;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.container .login {
+  display: none;
+}
+
+#check:checked~.login {
+  display: block;
+}
+
+#check:checked~.registration {
+  display: none;
+}
+
+#check {
+  display: none;
+}
+
+.container .form {
+  padding: 2rem;
+}
+
+.form header {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form input {
+  height: 60px;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 17px;
+  margin-bottom: 1.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.form input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.form button {
+  height: 60px;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 17px;
+  margin-bottom: 1.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.form button:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form a {
+  font-size: 16px;
+  color: #520095;
+  text-decoration: none;
+}
+
+.form a:hover {
+  text-decoration: underline;
+}
+
+.form .button {
+  color: #fff;
+  background: #700095;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 1.7rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.form .button:hover {
+  background: rgb(72, 0, 149);
+}
+
+.signup {
+  font-size: 17px;
+  text-align: center;
+}
+
+.signup label {
+  color: #480095;
+  cursor: pointer;
+}
+
+.signup label:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: #d90e0e;
+  font-size: 20px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+    </style>
+</head>
+<body>
+{% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  <div class="background"></div>
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="registration form">
+      <header>Signup</header>
+      {% if error %}
+        <h1 class="error">{{ error }}</h1>
+      {% endif %}
+
+      <input type="text" name="username" id="username" placeholder="Username">
+
+      <input type="password" name="password1" id="password1" placeholder="Create a password">
+
+      <input type="password" name="password2" id="password2" placeholder="Confirm your password">
+
+      <button type="submit" class="button">Sign up</button>
+      <div class="signup">
+        <span class="signup">Already have an account?
+          <a href="{% url 'loginuser' %}" for="check">Login</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
+</body>
+</html>

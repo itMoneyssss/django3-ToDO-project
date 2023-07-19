@@ -1,0 +1,99 @@
+{% extends 'todo_app/base.html' %}
+{% load static %}
+            <!-- ==== Content ==== -->
+{% block content %}
+    <style>
+                .list, .danger {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+          }
+
+          .list {
+            background-color: #007bff;
+          }
+
+          .list:hover {
+            background-color: rgba(10, 10, 232, 0.99);
+          }
+
+          .danger {
+            background-color: #d90e0e;
+          }
+
+          .danger:hover {
+            background-color: #d7bd11;
+          }
+
+          .list h1 {
+            font-size: 28px;
+            margin: 0;
+          }
+
+.new {
+  color: var(--op-color);
+  position: absolute;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  text-decoration: none;
+}
+
+.new::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: var(--line-color);
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+.new:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+body {
+  display: grid;
+  font-family: 'Poppins', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  height: 100vh;
+  place-items: center;
+}
+
+
+    </style>
+    <!-- сделать таблицу -->
+            {% if todos %}
+                 <h1 class="title">{{ todos.count }} Current Todo{{ todos.count|pluralize }}</h1>
+            {% else %}
+                           <h1 class="title">Current Todos</h1>
+            {% endif %}
+
+
+        {% if todos %}
+
+                {% for todo in todos %}
+                    <a href="{% url 'viewToDos' todo.id %}" class="{% if todo.important %}danger{% else %}list{% endif %}"><b>{{ todo.title }}</b>{% if todo.important %} - {{ todo.description|truncatechars:30 }}{% endif %}</a><br>
+                {% endfor %}
+
+        {% else %}
+
+                <h2 class="title">Looks like you don't have any todos! Nice work.</h2>
+            <br>
+            <a role="button" class="new" href="{% url 'createToDos' %}">New Todo</a>
+
+        {% endif %}
+
+{% endblock %}

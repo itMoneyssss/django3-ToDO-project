@@ -1,0 +1,27 @@
+{% extends 'todo_app/base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .start {
+            margin-left: 100px;
+        }
+    </style>
+    <div class="home-logo">
+    <img src="{% static 'todo_app/ToDo_logo.png' %}" class="home-logo">
+    </div>
+
+    <br>
+    <br>
+<div class="row justify-content-center mt-5">
+<div class="row justify-content-center my-3">
+
+</div>
+        <div class="home-text">
+
+            <h1>Simply Your Todos. Woo!</h1>
+            <p style="font-style: oblique">Are you feeling overwhelmed with all of life's possibilities? Do you find yourself struggling to prioritize and make the most of your time? That's where <u>ToDo</u> comes in. We understand that life can be busy, but we believe that with the right tools and strategies, you can create a life that truly matters to you. Our app is designed to help you organize your tasks and goals, so that you can focus on what's truly important. Say goodbye to stress and hello to a more fulfilling life. Try Todo Woo today and see the difference for yourself. </p><br>
+            <a class="start" role="button" href="{% url 'signupuser' %}">Start</a>
+        </div>
+    </div>
+
+{% endblock %}

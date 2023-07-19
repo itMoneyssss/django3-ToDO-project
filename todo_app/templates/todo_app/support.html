@@ -1,0 +1,41 @@
+{% extends 'todo_app/base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .new {
+          color: var(--new-color);
+          position: absolute;
+          text-decoration: none;
+        }
+
+        .new::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 4px;
+          border-radius: 4px;
+          background-color: var(--line-color);
+          bottom: 0;
+          left: 0;
+          transform-origin: right;
+          transform: scaleX(0);
+          transition: transform .3s ease-in-out;
+        }
+
+        .new:hover::before {
+          transform-origin: left;
+          transform: scaleX(1);
+        }
+
+        body {
+          display: grid;
+          font-family: 'Poppins', sans-serif;
+          font-size: 27px;
+          font-weight: 700;
+          height: 100vh;
+          place-items: center;
+        }
+    </style>
+    <h1 class="support">Donate $</h1>
+    <P STYLE="font-style: italic">donate to card:<u class="new">3902-495840625-60</u></P>
+{% endblock %}

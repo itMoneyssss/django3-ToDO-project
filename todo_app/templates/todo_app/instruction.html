@@ -1,0 +1,21 @@
+{% extends "todo_app/base.html" %}
+
+    {% load static %}
+
+    {% block content %}
+
+        <title>Instruction to work </title>
+
+        <h3 class="title">Instruction:</h3>
+        <ol class="op" type="1">
+            <li>If you want to create a new task, click on the "Create" button on the sidebar to go to the task creation page. Fill in the required fields and click the "Save" button to create a task.</li>
+            <li>If you want to view a list of all current tasks, click on the "Home" button on the sidebar.</li>
+            <li>If you want to edit a task, click on its name in the task list to go to the edit page. Make the necessary changes and click the "Save" button to save the changes.</li>
+            <li>If you want to delete a task, click on its name in the task list to go to the edit page, and then click the Delete button to delete the task.</li>
+            <li>If you want to mark a task as completed, click on its name in the task list to go to the edit page, and then click the "Completed" button to complete the task.</li>
+            <li>If you want to view detailed information about a task, click on its name in the task list to go to the task details page. Here you can see the name, description and status of the task.</li>
+            <li>You can use the search on the main page to find tasks by keyword or phrase. Enter a keyword or phrase in the search box and click the "Search" button.</li>
+            <li>If you want to make the task important, then click on the importance button and when you save it, it will be highlighted in red</li>
+        </ol>
+
+    {% endblock %}
